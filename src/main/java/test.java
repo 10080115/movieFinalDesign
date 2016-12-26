@@ -1,60 +1,43 @@
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 
 import java.util.*;
-import java.util.Map.Entry;
 
 /**
- * @author shenchao
- *         <p>
- *         皮尔逊相关度评价
- *         <p>
- *         以《集体智慧编程》一书用户评价相似度数据集做测试
+ * Created by lishiwei on 16/12/26.
  */
 public class test {
     public static void main(String[] args) {
+        List<String> listA = new ArrayList<String>();
+        listA.add("1");
+        listA.add("3");
+        listA.add("4");
+        listA.add("5");
 
-        Map<String, String> unsortMap = new HashMap<String, String>();
-        unsortMap.put("2", "B");
-        unsortMap.put("1", "A");
-        unsortMap.put("4", "D");
-        unsortMap.put("3", "B");
-        unsortMap.put("7", "C");
-        unsortMap.put("5", "z");
-        unsortMap.put("6", "b");
-        unsortMap.put("8", "a");
 
-        System.out.println("Unsort Map......");
-        printMap(unsortMap);
+        List<String> listB = new ArrayList<String>();
+        listB.add("7");
+        listB.add("9");
+        listB.add("2");
+        listB.add("5");
 
-        System.out.println("Sorted Map......");
-        Map<String, String> sortedMap = sortByComparator(unsortMap);
-        printMap(sortedMap);
+        Collections.sort(listA);
+        Collections.sort(listB);
 
-    }
+        int sizeA = listA.size();
+        int sizeB = listB.size();
 
-    private static Map sortByComparator(Map unsortMap) {
-        List list = new LinkedList(unsortMap.entrySet());
-        // sort list based on comparator
-        Collections.sort(list, new Comparator() {
-            public int compare(Object o1, Object o2) {
-                return ((Comparable) ((Map.Entry) (o1)).getValue())
-                        .compareTo(((Map.Entry) (o2)).getValue());
-            }
-        });
-
-        // put sorted list into map again
-        //LinkedHashMap make sure order in which keys were inserted
-        Map sortedMap = new LinkedHashMap();
-        for (Iterator it = list.iterator(); it.hasNext(); ) {
-            Map.Entry entry = (Map.Entry) it.next();
-            sortedMap.put(entry.getKey(), entry.getValue());
+        for (int i = 0, j = 0; i < sizeA && j < sizeB; ) {
+            int A = Integer.valueOf(listA.get(i));
+            int B = Integer.valueOf(listB.get(j));
+            System.out.println(A + " " + B);
+            if (A == B) {
+                System.out.println("相同");
+                break;
+            } else if (A > B)
+                j++;
+            else
+                i++;
         }
-        return sortedMap;
-    }
 
-    public static void printMap(Map<String, String> map) {
-        for (Map.Entry entry : map.entrySet()) {
-            System.out.println("Key : " + entry.getKey()
-                    + " Value : " + entry.getValue());
-        }
     }
-}  
+}
