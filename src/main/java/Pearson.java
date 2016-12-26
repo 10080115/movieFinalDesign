@@ -27,7 +27,7 @@ class Pearson {
     private List<Item> itemList = new ArrayList<Item>();
     //itemId
     private Set<String> itemIdList = new HashSet<String>();
-
+    private List<String> sortedItemIdList = new ArrayList<String>();
     //item rating
     private HashMap<String, Float> itemId2Rating = new HashMap<String, Float>();
     private HashMap<String, String> itemId2TimeStamp = new HashMap<String, String>();
@@ -103,5 +103,14 @@ class Pearson {
 
     public HashMap<String, String> getItemId2TimeStamp() {
         return itemId2TimeStamp;
+    }
+
+    public List<String> getSortedItemIdList() {
+        return sortedItemIdList;
+    }
+
+    public void setSortedItemIdList(List<Set> itemIdList) {
+        //itemIdList
+        this.sortedItemIdList = sortedItemIdList;
     }
 }
